@@ -18,7 +18,7 @@ Checking long and short reads with JBrowse2 for confirmation of mutations.
 The long reads of OpenPichia did not seem visible in JBrowse2, neither was de bamfile of the long reads visible. Did some research and found out that all the variants where not coded like the reference genome so it could not find it`s match. 
 
 Together with Daria looked for a solution (changed the vcf file for the long reads) and also compared genomes of NCBIv2 and OPenPichia. 
-##09102025
+## 09102025
 To do's
 Compare A5/A6 ( Ask Daria for confirmation on duplication on chromM?) and A7/A8
 Adding link to githubacount to IDP. 
