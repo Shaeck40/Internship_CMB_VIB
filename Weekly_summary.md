@@ -19,11 +19,7 @@ The long reads of OpenPichia did not seem visible in JBrowse2, neither was de ba
 
 Together with Daria looked for a solution (changed the vcf file for the long reads) and also compared genomes of NCBIv2 and OPenPichia. 
 ## 09102025
-To do's
-Compare A5/A6 ( Ask Daria for confirmation on duplication on chromM?) and A7/A8
-Adding link to githubacount to IDP. 
-Searching for PID of reference genomes to add to the document involving FAIR.
-
-I wrote a Python script to compare 2 vcf files (comparison_vcf.py))
+I wrote a Python script to compare 2 vcf files (comparison_vcf_extended2.py)
+Used the results of this Pythonscript to check the genome vs genome alignment of OPENPicha vs NVBIv2.
 I used the WGS pipeline to produce the last files (Analysis A7 and A8) and used those files in JBrowse2.
 
