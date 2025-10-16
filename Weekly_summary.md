@@ -23,3 +23,14 @@ I wrote a Python script to compare 2 vcf files (comparison_vcf_extended2.py)
 Used the results of this Pythonscript to check the genome vs genome alignment of OPENPicha vs NVBIv2.
 I used the WGS pipeline to produce the last files (Analysis A7 and A8) and used those files in JBrowse2.
 
+##16102025
+Checked with JBrowse2 if the variants (present in file unique_to_vcf1.vcf, these are variants unique to CBS and not present in NVBIv2) are confirmed by short and long reads. 
+
+Discussed the results of last week (unique to vcf2) because some variants were not seen in the ref.genome of OPENPichia. Daria suggested it could be better to do a chromosome-to -chromosome allignment instead of genome -to --genome allignment. The paf files of the genome to genome allignment seem to have irregularities. 
+
+Because no long reads were seen in this analysis I checked the vcf and bam files. The chromosome names had suffixes and could not match any genome in the JBrowse2. The vcf file was changed with Notepad++(outputlrchanged.vcf) but the bam file was changed with commands in het commandline (usage of samtools to change bam <-> sam-file and sed command). Files: reference_cleaned>sam/bam. 
+
+Looked voor Gene ontologytools: 
+DEEPROTGO 
+FAIRFUN4Biodiversity 
+GetENRICH(Beschikbaar als webinterface én command-line tool.) 
