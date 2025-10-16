@@ -1,0 +1,12 @@
+#/mnt/c/Documents and Settings/Sarah/Documents/Internship/A8_output_lr_CBS7435vsNCBIv2/data$
+#samtools view -h reference.bam > reference.sam
+#grep -c 'LT962476.2' reference.sam
+#142424
+#sed -e "s/LT962476\.2/LT962476/g" \
+    -e "s/LT962477\.2/LT962477/g" \
+    -e "s/LT962478\.2/LT962478/g" \
+    -e "s/LT962479\.2/LT962479/g" \
+    -e "s/FR839632\.1/FR839632/g" \
+    reference.sam > reference_cleaned.sam
+#samtools view -b reference_cleaned.sam > reference_cleaned.bam
+#samtools index reference_cleaned.bam  (om index .bai te maken)
