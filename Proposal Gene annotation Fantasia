@@ -1,0 +1,49 @@
+
+import pandas as pd
+import subprocess
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# -----------------------------
+# Step 1: Run FANTASIA using Singularity
+# -----------------------------
+input_fasta = "pichia_proteome.fasta"
+output_file = "pichia_annotations.tsv"
+
+# Run the Singularity container (adjust the path to your .sif file)
+singularity_command = f"""
+singularity exec fantasia_latest.sif fantasia \
+--input {input_fasta} \
+--output {output_file}
+"""
+
+# Execute the command
+subprocess.run(singularity_command, shell=True, check=True)
+
+# -----------------------------
+# Step 2: Load the results
+# -----------------------------
+df = pd.read_csv(output_file, sep="\t")
+
+print("First 5 rows of annotations:")
+print(df.head())
+
+# -----------------------------
+# Step 3: Explore the annotations
+# -----------------------------
+print("\nNumber of unique predicted functions:", df['predicted_function'].nunique())
+print("\nTop 10 predicted functions:")
+print(df['predicted_function'].value_counts().head(10))
+
+# -----------------------------
+# Step 4: Visualize top 20 functions
+# -----------------------------
+plt.figure(figsize=(10,6))
+sns.countplot(y=df['predicted_function'], 
+              order=df['predicted_function'].value_counts().index[:20],
+              palette="viridis")
+plt.title("Top 20 Predicted Functions in Pichia Proteome")
+plt.xlabel("Count")
+plt.ylabel("Predicted Function")
+plt.tight_layout()
+plt.show()
