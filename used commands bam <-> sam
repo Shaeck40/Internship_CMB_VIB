@@ -1,4 +1,9 @@
-#/mnt/c/Documents and Settings/Sarah/Documents/Internship/A8_output_lr_CBS7435vsNCBIv2/data$
+# cd/mnt
+cd c
+cd /'Documents and Settings'/
+cd Sarah/Documents/Internship/A8_output_lr_CBS7435vsNCBIv2/data
+
+## Samtools to make a samfile from a bamfile and to change the chromosomal name
 #samtools view -h reference.bam > reference.sam
 #grep -c 'LT962476.2' reference.sam
 #142424
@@ -8,5 +13,11 @@
     -e "s/LT962479\.2/LT962479/g" \
     -e "s/FR839632\.1/FR839632/g" \
     reference.sam > reference_cleaned.sam
+## Samtools to make a bamfile from a samfile and to change the chromosomal name
 #samtools view -b reference_cleaned.sam > reference_cleaned.bam
+
+## Samtools to make a index of the bam file
 #samtools index reference_cleaned.bam  (om index .bai te maken)
+
+## Samtools to filter on lenght of the long reads bamfile
+#samtools view -e 'qlen >= 10000' -o filtered-len.bam reference_cleaned.bam
