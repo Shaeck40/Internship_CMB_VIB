@@ -21,3 +21,6 @@ cd Sarah/Documents/Internship/A8_output_lr_CBS7435vsNCBIv2/data
 
 ## Samtools to filter on lenght of the long reads bamfile
 #samtools view -e 'qlen >= 10000' -o filtered-len.bam reference_cleaned.bam
+
+## Samtools to filter longreads that cover area of interest
+samtools view -e 'pos<=1753000 && endpos >= 1761000' -o filtered-len-pos.bam filtered-len.bam
