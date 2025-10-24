@@ -34,3 +34,10 @@ Looked voor Gene ontologytools:
 DEEPROTGO 
 FAIRFUN4Biodiversity 
 GetENRICH(Beschikbaar als webinterface én command-line tool.) 
+
+## 23102025
+Checked to confirm an insertion in CBS in comparison to NCBIv2. 
+Used samtools in VScode to get the longreads filtered on length so we could see which longreads overlap the area of insertion. 
+
+Installed Rstudio en libraries to get started with gene-ontology. 
+Adapted via Rstudio Quickgo (gene ontology table ) and a Excellfile (differential expression results )to have the correct columns for the GSEA in Rstudio. 
