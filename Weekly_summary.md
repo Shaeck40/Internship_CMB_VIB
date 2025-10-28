@@ -43,29 +43,8 @@ Installed Rstudio en libraries to get started with gene-ontology.
 Adapted via Rstudio Quickgo (gene ontology table ) and a Excellfile (differential expression results )to have the correct columns for the GSEA in Rstudio. 
 
 ## 28102025
-Read the existing code in Rstudio for gene annotation (GSEA). Changed the code so 3 different lists would be made (BP: biological processes,F: molecular functions, C:cellular component). 
+Reviewed and modified the existing RStudio code for gene annotation using GSEA. Updated the workflow to generate three separate TSV tables corresponding to Biological Processes (BP), Molecular Functions (MF), and Cellular Components (CC).
 
-Changed some code for plotting:(switched head and tail to get the lowest and highest results).
-UP10=tail(gse_bp[[i]]@result$Description[order(gse_bp[[i]]@result$NES)], 10)
-DOWN10=head(gse_bp[[i]]@result$Description[order(gse_bp[[i]]@result$NES)], 10)
+Enhanced the code to produce well-scaled dot plots using clusterProfiler, including one dot plot per condition and per gene annotation, as well as network plots.
 
-With saving the results in tables I got two errors:
-no applicable method for '@' applied to an object of class "data.frame",Error in *tmp*`, analysis, value = analysis_name,changed code in comparison with table bp.
-Looked for another way to read the S4object or the dataframe.
-
-
-  **if (is.data.frame(gse_c[[i]])) {
-    # data.frame
-    temp <- gse_c[[i]]
-  } else if (methods::is(gse_c[[i]], "S4") && "result" %in% slotNames(gse_c[[i]])) {
-    # S4-object
-    temp <- gse_c[[i]]@result
-  } else {
-    # fallback
-    temp <- data.frame(
-      ID = NA, Description = NA, setSize = NA, enrichmentScore = NA,
-      NES = NA, pvalue = NA, p.adjust = NA, qvalue = NA, 
-      rank = NA, leading_edge = NA, core_enrichment = NA
-    )
-  }**
-  
+Additionally, implemented custom dot plot generation directly from the TSV tables, allowing comparison of gene enrichment or suppression across different conditions.
