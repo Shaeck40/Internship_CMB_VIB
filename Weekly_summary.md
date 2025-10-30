@@ -48,3 +48,10 @@ Reviewed and modified the existing RStudio code for gene annotation using GSEA. 
 Enhanced the code to produce well-scaled dot plots using clusterProfiler, including one dot plot per condition and per gene annotation, as well as network plots.
 
 Additionally, implemented custom dot plot generation directly from the TSV tables, allowing comparison of gene enrichment or suppression across different conditions.
+
+## 30102025
+Changed the code in Rstudio to make well visualised netwerkplots(plots with gene labels and plots without gene lables). Used documentation to find out which settings needed to be changed.Saved the plots as pdf and .png files locally and in the cloud.  
+
+Added code to the Rstudioproject for gsea so that every table (F,BP and C) was compared with a UNiPROT dataset. If the proteins in the “core enrichment” colum of the tsv table was also present in the Uniprot table, the gene name (present in Uniprot data) was added to an extra colum in the tsv tables. 
+
+Search for installation guides for a functional annotation tool (Fantasia)
