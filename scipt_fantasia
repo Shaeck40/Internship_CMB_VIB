@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+echo "=== 1️⃣ Controleren op vereisten: Python, Docker, conda ==="
+python3 --version || { echo "Python 3.10+ is vereist"; exit 1; }
+docker --version || { echo "Docker is niet geïnstalleerd of niet actief"; exit 1; }
+docker-compose --version || echo "Docker Compose niet gevonden, kan later nodig zijn"
+which conda >/dev/null 2>&1 && echo "Conda gevonden" || echo "Conda niet gevonden, optioneel voor MMseqs2/Parasail"
+
+echo "=== 2️⃣ Installeren Poetry ==="
+curl -sSL https://install.python-poetry.org | python3 -
+export PATH="$HOME/.local/bin:$PATH"
+poetry --version
+
+echo "=== 3️⃣ Clone FANTASIA repository ==="
+if [ ! -d "FANTASIA" ]; then
+    git clone https://github.com/CBBIO/FANTASIA.git
+fi
+cd FANTASIA
+
+echo "=== 4️⃣ Installeren Python-dependencies via Poetry ==="
+poetry install
+
+echo "=== 5️⃣ Starten PostgreSQL (pgvector) container ==="
+docker ps -a | grep pgvectorsql && docker rm -f pgvectorsql || true
+docker run -d --name pgvectorsql \
+  -e POSTGRES_USER=usuario \
+  -e POSTGRES_PASSWORD=clave \
+  -e POSTGRES_DB=BioData \
+  -p 5432:5432 \
+  pgvector/pgvector:pg16
+
+echo "=== 6️⃣ Starten RabbitMQ container ==="
+docker ps -a | grep rabbitmq && docker rm -f rabbitmq || true
+docker run -d --name rabbitmq \
+  -p 15672:15672 \
+  -p 5672:5672 \
+  rabbitmq:management
+
+echo "=== 7️⃣ Configureren FANTASIA workspace ==="
+mkdir -p ~/fantasia
+chmod -R 755 ~/fantasia
+cat > ~/fantasia/config.yaml <<EOL
+DB_USERNAME: usuario
+DB_PASSWORD: clave
+DB_HOST: localhost
+DB_PORT: 5432
+DB_NAME: BioData
+
+rabbitmq_host: localhost
+rabbitmq_user: guest
+rabbitmq_password: guest
+EOL
+
+echo "=== 8️⃣ Initialiseren database ==="
+poetry run fantasia initialize
+
+echo "=== 9️⃣ Optioneel: MMseqs2 en Parasail via conda ==="
+read -p "Wil je MMseqs2/Parasail installeren via conda? (y/n): " install_tools
+if [[ "$install_tools" == "y" ]]; then
+    conda create -n fantasia_tools -c bioconda mmseqs2 parasail -y
+    echo "Activeer met: conda activate fantasia_tools"
+fi
+
+echo "=== 🔟 FANTASIA setup compleet ==="
+echo "Gebruik 'poetry run fantasia --help' om de CLI te testen."
+echo "PostgreSQL draait op poort 5432, RabbitMQ UI op http://localhost:15672 (guest/guest)."
