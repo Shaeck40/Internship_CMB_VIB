@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+echo "=== 1️⃣ Navigeer naar FANTASIA project ==="
+cd ~/FANTASIA
+
+echo "=== 2️⃣ Start Docker services (PostgreSQL & RabbitMQ) ==="
+docker start pgvectorsql || docker run -d --name pgvectorsql -e POSTGRES_USER=usuario -e POSTGRES_PASSWORD=clave -e POSTGRES_DB=BioData -p 5432:5432 pgvector/pgvector:pg16
+docker start rabbitmq || docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:management
+
+echo "=== 3️⃣ Activeer Poetry omgeving ==="
+poetry shell <<'EOF'
+echo "✅ Poetry omgeving actief"
+
+echo "=== 4️⃣ Voer annotatie script uit ==="
+python prot_annot.py
+
+EOF
+
+echo "=== 5️⃣ Stop Docker services (optioneel) ==="
+docker stop pgvectorsql rabbitmq
+
+echo "✅ Alles klaar! CSV met annotaties staat in de projectfolder."
