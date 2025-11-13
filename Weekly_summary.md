@@ -52,6 +52,13 @@ Additionally, implemented custom dot plot generation directly from the TSV table
 ## 30102025
 Changed the code in Rstudio to make well visualised netwerkplots(plots with gene labels and plots without gene lables). Used documentation to find out which settings needed to be changed.Saved the plots as pdf and .png files locally and in the cloud.  
 
-Added code to the Rstudioproject for gsea so that every table (F,BP and C) was compared with a UNiPROT dataset. If the proteins in the “core enrichment” colum of the tsv table was also present in the Uniprot table, the gene name (present in Uniprot data) was added to an extra colum in the tsv tables. 
-
+## 06112025
+Tried to install the Fantasia annotation tool on the laptop of VIB (didn’t went smoothly_lot of errors) 
+The proposal of Daria was to check if this tool suggest more GO terms in comparison with the gene annotation done last week with Quick GO.  
+I ran the Fantasia pipeline with the 2 refseq (Uniprot and NCBI). There were no results. I changed the header of one of these fasta files to see if it would change but no results.  
+While installing the tool I checked the last vcf mutations in JBrowse between NCBI and CBS. 
+Added code to the Rstudioproject for gsea so that every table (F,BP and C) was compared with a UNiPROT dataset. If the proteins in the “core enrichment” colum of the tsv table were also present in the Uniprot table, the gene name (present in Uniprot data) was added to an extra colum in the tsv tables. 
 Search for installation guides for a functional annotation tool (Fantasia)
+
+## 13112025
+
