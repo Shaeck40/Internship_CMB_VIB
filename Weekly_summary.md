@@ -61,5 +61,14 @@ Added code to the Rstudioproject for gsea so that every table (F,BP and C) was c
 Search for installation guides for a functional annotation tool (Fantasia)
 
 ## 13112025
+Reviewed the results of the genome alignments in JBrowse (CBS vs NCBIv2). Looking at the SVG files we confirmed or rejected the mutations that were mentioned in the vcf file (unique to vcf2). 
+We also wanted to check the results (OpenPichia vs NCBIv2) but the SVG files did not show the long reads. 
+The reference.bam file and the corresponding index needed to be adjusted with Samtools in VScode. 
 
-=======
+## 20112025
+Using the cleaned reference.bam files from the long reads, I verified the variants expected to be present in OpenPichia compared to NCBIv2. 
+I also examined several mutations in OpenPichia genes. 
+I saved the Excel file from the previous analysis (CBS vs NCBI) as a CSV file and used it in a Python script (make_vcf_for_genome_assembly.py). 
+This script compares the CSV with the VCF (CBS vs NCBI) and generates a new VCF (ChangesCBS.vcf) containing the mutations that need to be applied to the CBS reference genome. 
+Then i used the commands from Consensus sequence (suggested by Daria) to change the ref fastafile from CBS in a consensus.fa. 
+
