@@ -1,3 +1,11 @@
+### Create a new environment with Python
+conda create -n genomics-tools python=3.10
+# Activate the environment
+conda activate genomics-tools
+# Install bcftools and tabix from Bioconda
+conda install -c bioconda bcftools tabix
+
+
 ### BCF tools consensus
 #used python script (/home/sarah/Internship_CMB_VIB/vcf_files/make_CBSvcf_for_genome_assembly.py) to make vcf file
 # add format and sample col ("C:\Users\Sarah\Documents\Internship\Data\CBS7435_novelREF\add_format_sample_to_vcf.py")
