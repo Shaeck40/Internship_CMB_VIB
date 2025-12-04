@@ -1,0 +1,6 @@
+# Liftoff CBS
+liftoff consensusCBS.fa 1-0011936.fasta -g 1-0011936.gff -o newCBS_gtf.gff -polish
+
+#Liftoff OPENPichia
+liftoff consensusOPENP.fa 1-0009129_v2.fasta -g 1-0009129_v2.gff -o newOPENP_gtf.gff -polish
+
