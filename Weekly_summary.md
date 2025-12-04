@@ -72,3 +72,20 @@ I saved the Excel file from the previous analysis (CBS vs NCBI) as a CSV file an
 This script compares the CSV with the VCF (CBS vs NCBI) and generates a new VCF (ChangesCBS.vcf) containing the mutations that need to be applied to the CBS reference genome. 
 Then i used the commands from Consensus sequence (suggested by Daria) to change the ref fastafile from CBS in a consensus.fa. 
 
+## 27112025
+Checked the VCF files for OpenPichia and its derivatives to confirm if the mutations seen in OpenPichia vs. NCBI (AF = 50%) were also present in the derivative strains.
+Set up a new conda environment called genomics-tools.
+Tried to generate consensus sequences for OpenPichia and CBS using bcftools with the custom VCF files from last week.
+Used the command from the bcftools manual, but no variants were applied to the genomes.
+Tested different solutions:
+
+Verified variant positions with seqkit and corrected them.
+Indexed both VCF and reference files.
+
+## 04122025
+Fixed the VCF files because the variant numbering was wrong.
+Created consensus genomes for OpenPichia and CBS using bcftools consensus.
+Used Liftoff to transfer annotations from the reference genome to the new genomes.
+Ran Miniprot to add protein-based annotations.
+Used gffcompare to compare and combine the different annotation files.
+
