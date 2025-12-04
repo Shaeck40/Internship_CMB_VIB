@@ -1,0 +1,9 @@
+###Miniprot
+
+#Miniprot for CBS
+miniprot -Iut16 -J 10 --gff consensusCBS.fa pipas_genes-1009.pep_GS115_nostop.fasta > GS115_CBS.gff
+miniprot -Iut16 -J 9 --gff consensusCBS.fa uniprotkb_Komagataella_phaffii_CBS_7435_2024_12_12.fasta > Komag_CBS.gff
+
+#Miniprot for OpenPichia
+miniprot -Iut16 -J 9 --gff consensusOPENP.fa uniprotkb_Komagataella_phaffii_CBS_7435_2024_12_12.fasta > Komag_OPENP.gff
+miniprot -Iut16 -J 10 --gff consensusOPENP.fa pipas_genes-1009.pep_GS115_nostop.fasta > GS115_OPENP.gff
