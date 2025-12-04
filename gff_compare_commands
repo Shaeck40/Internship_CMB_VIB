@@ -1,0 +1,20 @@
+#Making a dir
+OUTDIR="gffcompare_OPENP_run"
+mkdir -p "$OUTDIR/clean"
+
+# Create #free gff files
+sed '/^#/d' Komag_OPENP.gff   > "$OUTDIR/clean/Komag_OPENP_nohash.gff"
+sed '/^#/d' GS115_OPENP.gff   > "$OUTDIR/clean/GS115_OPENP_nohash.gff"
+sed '/^#/d' newOPENP_gtf.gff  > "$OUTDIR/clean/newOPENP_gtf_nohash.gff"
+
+#to better track the origin of proteins, change ids in the miniprot-derived gff files:
+#for GS115, use gsub "MP0" "GS115_MP0"
+sed -i 's/MP0/GS115_MP0/g' "$OUTDIR/clean/GS115_OPENP_nohash.gff"
+
+#GFF compare
+
+gffcompare -K 1-0009129_v2.fasta \
+  "$OUTDIR/clean/Komag_OPENP_nohash.gff" \
+  "$OUTDIR/clean/GS115_OPENP_nohash.gff" \
+  "$OUTDIR/clean/newOPENP_gtf_nohash.gff" \
+  -o "$OUTDIR/gffcompare_OPENP"
