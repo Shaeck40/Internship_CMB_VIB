@@ -1,7 +1,0 @@
-### Proposal bcf tools consensus
-```
-bcftools norm -f ref.fa -Oz -o out.norm.vcf.gz in.vcf.gz
-tabix -p vcf out.norm.vcf.gz
-```
-
-

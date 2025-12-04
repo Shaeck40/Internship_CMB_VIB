@@ -1,0 +1,18 @@
+### BCF tools consensus
+#used python script (/home/sarah/Internship_CMB_VIB/vcf_files/make_CBSvcf_for_genome_assembly.py) to make vcf file
+# add format and sample col ("C:\Users\Sarah\Documents\Internship\Data\CBS7435_novelREF\add_format_sample_to_vcf.py")
+ 
+# check if position of proposed REF in vcf matches REF in ref.fasta
+seqkit subseq -r startregion:endregion --chr chrNUMBER -w 0  ref.fasta
+
+# changed POS -1 with editor in in.vcf
+
+#bcf tools consensus
+bgzip in.vcf
+bcftools index in.vcf.gz 
+bcftools norm -f ref.fa -Oz -o out.norm.vcf.gz in.vcf.gz
+tabix -p vcf out.norm.vcf.gz
+bcftools consensus -f ref.fa out.norm.vcf.gz > consensus.fa
+```
+
+
