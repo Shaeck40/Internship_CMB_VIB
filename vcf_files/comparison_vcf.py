@@ -9,7 +9,7 @@ def parse_vcf(filename):
     with open(filename, 'r') as f:
         for line in f:
             if line.startswith('#'):
-                continue  # sla metadata over
+                continue 
             parts = line.strip().split('\t')
             chrom, pos, _, ref, alt = parts[:5]
             variants[(chrom, pos)] = (ref, alt)
@@ -18,7 +18,6 @@ def parse_vcf(filename):
 
 def compare_vcfs(output_csv="vcf_comparison.csv"):
     
-    # --- Jouw vaste paden ---
     vcf1_path = "/home/sarah/Internship_CMB_VIB/vcf_files/aln_NCBIv2_vs_newCBS.vcf"
     vcf2_path = "/home/sarah/Internship_CMB_VIB/vcf_files/aln_NCBIv2_vs_OPENPichia.vcf"
 
@@ -53,4 +52,3 @@ def compare_vcfs(output_csv="vcf_comparison.csv"):
 
 if __name__ == "__main__":
     compare_vcfs()
-
